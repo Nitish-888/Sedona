@@ -1,23 +1,56 @@
+---
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title}</title>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 	</head>
-	<body>
+	<body class="bg-[#F9F6F2] m-0 p-0 overflow-x-hidden">
+		<div class="fixed inset-0 -z-50 h-screen w-screen overflow-hidden pointer-events-none">
+			<div class="absolute -top-[10%] -left-[10%] h-[70vw] w-[70vw] rounded-full bg-[#BC4A3C]/20 blur-[100px] animate-blob-1"></div>
+			<div class="absolute -bottom-[10%] -right-[10%] h-[60vw] w-[60vw] rounded-full bg-[#D4A373]/30 blur-[100px] animate-blob-2"></div>
+			<div class="absolute top-[30%] left-[20%] h-[40vw] w-[40vw] rounded-full bg-white/60 blur-[80px]"></div>
+		</div>
+
 		<slot />
+
+		<style is:global>
+			:root {
+				--bg: #F9F6F2;
+				--text: #1a1a1a;
+				--accent: #BC4A3C;
+			}
+
+			html, body {
+				height: 100%;
+				width: 100%;
+			}
+
+			@keyframes blob-rotate {
+				0% { transform: translate(0, 0) scale(1); }
+				33% { transform: translate(30px, -50px) scale(1.1); }
+				66% { transform: translate(-20px, 20px) scale(0.9); }
+				100% { transform: translate(0, 0) scale(1); }
+			}
+
+			.animate-blob-1 {
+				animation: blob-rotate 15s infinite alternate ease-in-out;
+			}
+
+			.animate-blob-2 {
+				animation: blob-rotate 20s infinite alternate-reverse ease-in-out;
+			}
+		</style>
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

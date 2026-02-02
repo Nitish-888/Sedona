@@ -1,11 +1,73 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import '../styles/global.css';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Sedona | Nitish Thotakura">
+	<div id="glass-lens" class="fixed top-0 left-0 w-[180px] h-[180px] rounded-full pointer-events-none z-40 bg-gradient-to-br from-[#BC4A3C]/20 to-white/5 backdrop-blur-[10px] opacity-0 transition-opacity duration-300"></div>
+
+	<main class="relative h-screen w-full flex items-center justify-end px-8 md:px-24 overflow-hidden bg-transparent">
+		
+		<div class="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
+			<div id="rock-main" class="absolute -top-32 -left-32 w-[500px] md:w-[850px] aspect-[4/3] transition-transform duration-700 ease-out origin-top-left">
+				<div class="w-full h-full bg-gradient-to-br from-[#3D2B1F] via-[#BC4A3C]/30 to-transparent 
+					rounded-[10%_90%_60%_40%/40%_30%_70%_60%] rotate-[15deg] 
+					border-r-[15px] border-b-[15px] border-black/10 
+					filter blur-[1px] shadow-[60px_60px_120px_rgba(0,0,0,0.5)]">
+				</div>
+			</div>
+		</div>
+
+		<div class="relative z-10 text-right max-w-2xl pr-4">
+			<div class="group cursor-default inline-block">
+				<h1 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter uppercase italic text-[var(--text)] leading-[0.8] transition-all duration-500 ease-out group-hover:scale-[1.03] group-hover:-translate-x-4">
+					Nitish <br/> <span class="text-[#BC4A3C]">Thotakura</span>
+				</h1>
+			</div>
+			
+			<p class="mt-8 text-gray-400 tracking-[0.4em] uppercase text-[10px] md:text-xs font-medium opacity-80">
+				Creative Developer <span class="text-black/10 mx-2">//</span> Sedona 2026
+			</p>
+
+			<button class="mt-12 px-10 py-4 bg-white/10 backdrop-blur-xl border border-black/5 rounded-full text-black text-[10px] tracking-[0.2em] font-bold uppercase hover:bg-[#BC4A3C] hover:text-white transition-all duration-500 shadow-sm">
+				Explore Work
+			</button>
+		</div>
+
+	</main>
 </Layout>
+
+<script>
+	const lens = document.getElementById('glass-lens');
+	const rockMain = document.getElementById('rock-main');
+
+	document.addEventListener('mousemove', (e) => {
+		const { clientX, clientY } = e;
+
+		if (lens) {
+			lens.style.opacity = "1";
+			lens.style.transform = `translate3d(${clientX - 90}px, ${clientY - 90}px, 0)`;
+		}
+
+		if (rockMain) {
+			const moveX = (window.innerWidth / 2 - clientX) / 80;
+			const moveY = (window.innerHeight / 2 - clientY) / 80;
+			rockMain.style.transform = `translate3d(${moveX}px, ${moveY}px, 0) rotate(15deg)`;
+		}
+	});
+
+	document.addEventListener('mouseleave', () => {
+		if (lens) {
+			lens.style.opacity = "0";
+		}
+	});
+</script>
+
+<style>
+	#glass-lens {
+		mask-image: radial-gradient(circle, black 0%, transparent 80%);
+		-webkit-mask-image: radial-gradient(circle, black 0%, transparent 80%);
+		will-change: transform;
+	}
+	h1 { white-space: nowrap; }
+</style>
