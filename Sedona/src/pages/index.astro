@@ -3,7 +3,6 @@ import '../styles/global.css';
 import Layout from '../layouts/Layout.astro';
 import IdentityCard from '../components/IdentityCard.astro';
 
-// Your Full Tech Stack: Software Dev + AI/ML
 const techStack = [
   "Python", "PyTorch", "TensorFlow", "Pandas", "NumPy", 
   "Scikit-Learn", "FastAPI", "PostgreSQL", "Docker", "AWS", 
@@ -13,7 +12,6 @@ const techStack = [
 
 <Layout title="Sedona | Nitish Thotakura">
 	<style is:global>
-		/* OUTFIT for Google-style readability, BUNGEE for creative pop */
 		@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Outfit:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
 		
 		html { scroll-behavior: smooth; }
@@ -27,18 +25,30 @@ const techStack = [
 			font-family: 'Outfit', sans-serif;
 		}
 
-		.font-bungee {
-			font-family: 'Bungee Shade', cursive;
-			text-transform: uppercase;
-			line-height: 1.1;
+		/* --- PRELOADER --- */
+		#preloader {
+			position: fixed;
+			inset: 0;
+			background: #38000A;
+			z-index: 9999;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			transition: transform 0.8s cubic-bezier(0.87, 0, 0.13, 1);
 		}
+		.loader-content { font-family: 'Space Mono', monospace; color: #FFA896; font-size: 11px; width: 220px; }
+		.loader-line { overflow: hidden; white-space: nowrap; border-right: 2px solid #CD1C18; width: 0; margin-bottom: 8px; }
+		.load-1 { animation: typing-short 0.7s steps(15, end) forwards; }
+		.load-2 { animation: typing-short 0.7s steps(15, end) 0.7s forwards; }
+		.load-3 { animation: typing-short 0.5s steps(10, end) 1.4s forwards, blink 0.5s step-end infinite; }
+		.loaded #preloader { transform: translateY(-100%); }
 
-		.intro-text {
-			font-family: 'Outfit', sans-serif;
-			letter-spacing: -0.02em;
-		}
+		@keyframes typing-short { from { width: 0 } to { width: 100% } }
+		@keyframes blink { from, to { border-color: transparent } 50% { border-color: #CD1C18 } }
 
-		/* REFINED TYPING ANIMATION - SLOWER SPEED */
+		/* --- HERO TYPING (2.3s) --- */
+		.font-bungee { font-family: 'Bungee Shade', cursive; text-transform: uppercase; line-height: 1.1; }
+		
 		.typewriter {
 			overflow: hidden;
 			border-right: .15em solid #CD1C18;
@@ -49,57 +59,58 @@ const techStack = [
 		}
 
 		.type-first {
-			/* 3s duration for a natural feel */
 			animation: 
-				typing 3s steps(25, end) forwards,
-				blink-caret .75s step-end 4 forwards; 
+				typing-long 2.3s steps(25, end) 2.8s forwards,
+				blink-caret .57s step-end 4 2.8s forwards; 
 		}
 
 		.type-second {
-			/* Starts after the 3s first name animation finishes */
 			animation: 
-				typing 3s steps(25, end) 3s forwards,
-				blink-caret .75s step-end 4 3s forwards;
+				typing-long 2.3s steps(25, end) 5.1s forwards,
+				blink-caret .57s step-end 4 5.1s forwards;
 		}
 
-		@keyframes typing {
-			from { width: 0 }
-			to { width: 100% }
+		@keyframes typing-long { from { width: 0 } to { width: 100% } }
+		@keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: #CD1C18 } }
+
+		/* --- ZEN & MARQUEE --- */
+		.terminal-line { opacity: 0; animation: lineFadeIn 0.5s ease 3.2s forwards; }
+		@keyframes lineFadeIn { from { opacity: 0; transform: translateX(-10px) } to { opacity: 1; transform: translateX(0) } }
+		@keyframes float { 0%, 100% { transform: translateY(0px) } 50% { transform: translateY(-10px) } }
+		.zen-float { animation: float 6s ease-in-out infinite; }
+
+		@keyframes scrollLeft { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+		@keyframes scrollRight { from { transform: translateX(-50%) } to { transform: translateX(0) } }
+		.animate-scroll-left { animation: scrollLeft 45s linear infinite }
+		.animate-scroll-right { animation: scrollRight 45s linear infinite }
+		.mask-fade { mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent); }
+
+		/* MARQUEE ITEM HOVER RESTORED */
+		.marquee-item {
+			display: inline-block;
+			transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+			cursor: default;
 		}
-
-		@keyframes blink-caret {
-			from, to { border-color: transparent }
-			50% { border-color: #CD1C18; }
-		}
-
-		/* MARQUEE ANIMATIONS */
-		@keyframes scrollLeft {
-			from { transform: translateX(0); }
-			to { transform: translateX(-50%); }
-		}
-
-		@keyframes scrollRight {
-			from { transform: translateX(-50%); }
-			to { transform: translateX(0); }
-		}
-
-		.animate-scroll-left { animation: scrollLeft 45s linear infinite; }
-		.animate-scroll-right { animation: scrollRight 45s linear infinite; }
-
-		.mask-fade {
-			mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-			-webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+		.marquee-item:hover {
+			transform: scale(1.15) translateY(-5px);
+			filter: drop-shadow(0 10px 10px rgba(205, 28, 24, 0.2));
 		}
 	</style>
+
+	<div id="preloader">
+		<div class="loader-content">
+			<div class="loader-line load-1">> INITIALIZING_BOOT...</div>
+			<div class="loader-line load-2">> MOUNTING_SEDONA_2026</div>
+			<div class="loader-line load-3">> SYSTEM_READY_ACCESS_OK</div>
+		</div>
+	</div>
 
 	<div class="fixed inset-0 z-0 pointer-events-none">
 		<div class="absolute inset-0 bg-[#FFA896]/20 blur-[120px] rounded-full scale-150 -translate-x-1/4 -translate-y-1/4"></div>
 	</div>
 
 	<aside class="fixed left-0 top-0 h-full w-20 z-50 flex flex-col items-center justify-between py-12 border-r border-[#38000A]/5 bg-white/10 backdrop-blur-md">
-		<div class="rotate-180 [writing-mode:vertical-lr] text-[10px] tracking-[0.6em] font-black uppercase text-[#38000A]/20 select-none">
-			React • Astro • Python • AI
-		</div>
+		<div class="rotate-180 [writing-mode:vertical-lr] text-[10px] tracking-[0.6em] font-black uppercase text-[#38000A]/20 select-none">React • Astro • Python • AI</div>
 		<div class="flex flex-col items-center gap-8 text-[#38000A]">
 			<a href="https://www.linkedin.com/in/nitish-thotakura/" target="_blank" class="hover:text-[#CD1C18] transition-colors uppercase text-[10px] font-bold tracking-[0.3em] [writing-mode:vertical-lr] rotate-180">LinkedIn</a>
 			<a href="#identity" class="hover:text-[#CD1C18] transition-colors uppercase text-[10px] font-bold tracking-[0.3em] [writing-mode:vertical-lr] rotate-180">Identity</a>
@@ -110,18 +121,17 @@ const techStack = [
 	<main class="relative z-10 pl-20">
 		<section class="h-screen w-full flex items-center px-12 md:px-24 max-w-[1400px] mx-auto">
 			<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 w-full items-center">
-				
-				<div class="hidden lg:block lg:col-span-5">
-					<div class="p-10 rounded-[2.5rem] bg-white/40 backdrop-blur-2xl border border-white/60 shadow-sm">
+				<div class="hidden lg:block lg:col-span-5 zen-float">
+					<div class="p-10 rounded-[2.5rem] bg-white/40 backdrop-blur-2xl border border-white/60 shadow-sm relative overflow-hidden">
 						<div class="flex gap-2 mb-10">
-							<div class="w-3 h-3 rounded-full bg-[#CD1C18]"></div>
+							<div class="w-3 h-3 rounded-full bg-[#CD1C18] animate-pulse"></div>
 							<div class="w-3 h-3 rounded-full bg-[#FFA896]"></div>
 						</div>
 						<div class="space-y-4 font-mono text-[11px] leading-relaxed text-[#38000A]/60">
-							<p class="text-[#CD1C18] font-bold uppercase tracking-widest text-[9px]">Environment: Sedona_v2.026</p>
-							<p>> User: <span class="text-[#38000A] font-bold">Nitish_Thotakura</span></p>
-							<p>> Role: <span class="italic text-[#9B1313]">Creative Developer</span></p>
-							<p class="animate-pulse opacity-50">> Status: Active_</p>
+							<p class="terminal-line text-[#CD1C18] font-bold uppercase tracking-widest text-[9px]">Environment: Sedona_v2.026</p>
+							<p class="terminal-line" style="animation-delay: 3.4s;">> User: <span class="text-[#38000A] font-bold">Nitish_Thotakura</span></p>
+							<p class="terminal-line" style="animation-delay: 3.6s;">> Role: <span class="italic text-[#9B1313]">Creative Developer</span></p>
+							<p class="terminal-line flex items-center gap-2" style="animation-delay: 3.8s;">> Status: <span class="text-[#CD1C18] animate-pulse">Active_</span></p>
 						</div>
 					</div>
 				</div>
@@ -131,17 +141,10 @@ const techStack = [
 						<span class="typewriter type-first">Nitish</span>
 						<span class="typewriter type-second text-[#CD1C18]">Thotakura</span>
 					</h1>
-					<div class="max-w-md space-y-6">
-						<p class="intro-text text-[#38000A]/90 font-light text-xl md:text-2xl leading-[1.4]">
-							A Software Developer fueled by the intersection of <span class="font-semibold text-[#CD1C18]">code and art</span>. 
-							Passionate about building high-performance web experiences with 
-							modern architecture and elegant design.
-						</p>
-						<div class="mt-12 flex flex-col items-end gap-2">
-							<a href="#identity" class="text-[9px] font-black uppercase tracking-[0.4em] text-[#CD1C18] animate-bounce">Scroll to Explore</a>
-							<div class="w-[1px] h-16 bg-[#CD1C18]/30 mt-2"></div>
-						</div>
-					</div>
+					<p class="text-[#38000A]/90 font-light text-xl md:text-2xl leading-[1.4] max-w-md">
+						A Software Developer fueled by the intersection of <span class="font-semibold text-[#CD1C18]">code and art</span>. 
+						Passionate about building high-performance web experiences.
+					</p>
 				</div>
 			</div>
 		</section>
@@ -151,18 +154,17 @@ const techStack = [
 				<h2 class="text-[10px] font-black uppercase tracking-[1em] text-[#CD1C18]/40 mb-4">Technical Skills</h2>
 				<div class="w-full h-[1px] bg-[#CD1C18]/10"></div>
 			</div>
-
 			<div class="py-12 overflow-hidden bg-white/10 flex flex-col gap-10 mask-fade">
 				<div class="flex whitespace-nowrap animate-scroll-left">
 					{[...techStack, ...techStack].map((tech) => (
-						<span class="font-bungee text-[1.4rem] md:text-[2.2rem] text-[#38000A]/30 px-14 select-none tracking-widest drop-shadow-[0_2px_2px_rgba(255,255,255,0.8)] transition-all hover:text-[#CD1C18] hover:scale-110 cursor-default">
+						<span class="marquee-item font-bungee text-[1.4rem] md:text-[2.2rem] text-[#38000A]/30 px-14 tracking-widest hover:text-[#CD1C18]">
 							{tech}
 						</span>
 					))}
 				</div>
 				<div class="flex whitespace-nowrap animate-scroll-right">
 					{[...techStack.reverse(), ...techStack].map((tech) => (
-						<span class="font-bungee text-[1.4rem] md:text-[2.2rem] text-[#CD1C18]/40 px-14 select-none tracking-widest drop-shadow-[0_2px_2px_rgba(255,255,255,0.8)] transition-all hover:text-[#38000A] hover:scale-110 cursor-default">
+						<span class="marquee-item font-bungee text-[1.4rem] md:text-[2.2rem] text-[#CD1C18]/40 px-14 tracking-widest hover:text-[#38000A]">
 							{tech}
 						</span>
 					))}
@@ -175,18 +177,13 @@ const techStack = [
 				<h2 class="text-[10px] font-black uppercase tracking-[1em] text-[#CD1C18]/40 mb-4">Identity Grid</h2>
 				<div class="w-full h-[1px] bg-[#CD1C18]/10"></div>
 			</div>
-
 			<div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch auto-rows-fr">
 				<IdentityCard type="github" username="Nitish-888" url="https://github.com/Nitish-888" />
 				<IdentityCard type="leetcode" username="Nitish_Thotakura" url="https://leetcode.com/u/Nitish_Thotakura/" />
-
 				<div class="relative group p-4">
 					<div class="absolute inset-4 translate-y-3 translate-x-2 bg-[#38000A]/10 rounded-[2.5rem] -z-10 group-hover:translate-y-5 group-hover:translate-x-4 transition-all duration-500"></div>
 					<a href="/resume.pdf" download="Nitish_Thotakura_Resume.pdf" class="block h-full relative bg-gradient-to-br from-[#CD1C18] to-[#9B1313] rounded-[2.5rem] shadow-xl overflow-hidden z-10 transition-all duration-500 group-hover:-translate-y-1">
 						<div class="p-10 h-full flex flex-col justify-between cursor-pointer relative text-white">
-							<div class="absolute top-0 right-0 p-8 opacity-20 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500">
-								<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
-							</div>
 							<h3 class="text-[9px] tracking-[0.4em] uppercase font-bold opacity-70">Curriculum Vitae</h3>
 							<div>
 								<p class="text-2xl font-black italic uppercase leading-none group-hover:tracking-wider transition-all duration-500">Download <br/> Resume</p>
@@ -198,4 +195,10 @@ const techStack = [
 			</div>
 		</section>
 	</main>
+
+	<script is:inline>
+		window.addEventListener('load', () => {
+			setTimeout(() => { document.body.classList.add('loaded'); }, 2200);
+		});
+	</script>
 </Layout>
