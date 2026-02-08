@@ -14,27 +14,38 @@ const { title } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+		
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Outfit:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 	</head>
-	<body class="bg-[#F9F6F2] m-0 p-0 overflow-x-hidden">
+	<body class="bg-[#FAF9F6] m-0 p-0 overflow-x-hidden">
 		<div class="fixed inset-0 -z-50 h-screen w-screen overflow-hidden pointer-events-none">
-			<div class="absolute -top-[10%] -left-[10%] h-[70vw] w-[70vw] rounded-full bg-[#BC4A3C]/20 blur-[100px] animate-blob-1"></div>
-			<div class="absolute -bottom-[10%] -right-[10%] h-[60vw] w-[60vw] rounded-full bg-[#D4A373]/30 blur-[100px] animate-blob-2"></div>
-			<div class="absolute top-[30%] left-[20%] h-[40vw] w-[40vw] rounded-full bg-white/60 blur-[80px]"></div>
+			<div class="absolute -top-[10%] -left-[10%] h-[70vw] w-[70vw] rounded-full bg-[#CD1C18]/10 blur-[100px] animate-blob-1"></div>
+			<div class="absolute -bottom-[10%] -right-[10%] h-[60vw] w-[60vw] rounded-full bg-[#FFA896]/20 blur-[100px] animate-blob-2"></div>
+			<div class="absolute top-[30%] left-[20%] h-[40vw] w-[40vw] rounded-full bg-white/40 blur-[80px]"></div>
 		</div>
 
 		<slot />
 
 		<style is:global>
 			:root {
-				--bg: #F9F6F2;
-				--text: #1a1a1a;
-				--accent: #BC4A3C;
+				--bg: #FAF9F6;
+				--text: #38000A;
+				--accent: #CD1C18;
 			}
 
 			html, body {
 				height: 100%;
 				width: 100%;
+				font-family: 'Outfit', sans-serif;
+				color: #38000A;
+				background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+			}
+
+			/* Global Bungee Class to ensure it works in all components */
+			.font-bungee {
+				font-family: 'Bungee Shade', cursive !important;
 			}
 
 			@keyframes blob-rotate {
@@ -50,6 +61,11 @@ const { title } = Astro.props;
 
 			.animate-blob-2 {
 				animation: blob-rotate 20s infinite alternate-reverse ease-in-out;
+			}
+
+			/* Utility for preloader logic */
+			.loaded #preloader {
+				transform: translateY(-100%);
 			}
 		</style>
 	</body>

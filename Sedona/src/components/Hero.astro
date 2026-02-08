@@ -1,0 +1,44 @@
+---
+---
+<div class="lg:col-span-7 flex flex-col items-end text-right">
+    <h1 class="font-bungee text-[#38000A] mb-8 text-[clamp(2.5rem,7vw,5rem)] leading-[1.1] flex flex-col items-end">
+        <span class="typewriter type-first">Nitish</span>
+        <span class="typewriter type-second text-[#CD1C18]">Thotakura</span>
+    </h1>
+    <div class="max-w-md space-y-6">
+        <p class="text-[#38000A]/90 font-light text-xl md:text-2xl leading-[1.4]">
+            A Software Developer fueled by the intersection of <span class="font-semibold text-[#CD1C18]">code and art</span>. 
+            Passionate about building high-performance web experiences.
+        </p>
+        <div class="mt-12 flex flex-col items-end gap-2">
+            <a href="#identity" class="text-[9px] font-black uppercase tracking-[0.4em] text-[#CD1C18] animate-bounce">Scroll to Explore</a>
+            <div class="w-[1px] h-16 bg-[#CD1C18]/30 mt-2"></div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .font-bungee { font-family: 'Bungee Shade', cursive; text-transform: uppercase; line-height: 1.1; }
+    
+    .typewriter {
+        overflow: hidden;
+        border-right: .15em solid #CD1C18;
+        white-space: nowrap;
+        margin: 0 0 0 auto;
+        letter-spacing: .05em;
+        width: 0;
+    }
+
+    .type-first {
+        animation: typing-long 2.3s steps(25, end) 2.8s forwards,
+                   blink-caret .57s step-end 4 2.8s forwards; 
+    }
+
+    .type-second {
+        animation: typing-long 2.3s steps(25, end) 5.1s forwards,
+                   blink-caret .57s step-end 4 5.1s forwards;
+    }
+
+    @keyframes typing-long { from { width: 0 } to { width: 100% } }
+    @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: #CD1C18 } }
+</style>

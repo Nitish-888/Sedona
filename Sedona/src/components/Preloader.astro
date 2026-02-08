@@ -1,0 +1,37 @@
+---
+---
+<div id="preloader">
+	<div class="loader-content">
+		<div class="loader-line load-1">> INITIALIZING_BOOT...</div>
+		<div class="loader-line load-2">> MOUNTING_SEDONA_2026</div>
+		<div class="loader-line load-3">> SYSTEM_READY_ACCESS_OK</div>
+	</div>
+</div>
+
+<style>
+	#preloader {
+		position: fixed;
+		inset: 0;
+		background: #38000A;
+		z-index: 9999;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: transform 0.8s cubic-bezier(0.87, 0, 0.13, 1);
+	}
+	.loader-content { font-family: 'Space Mono', monospace; color: #FFA896; font-size: 11px; width: 220px; }
+	.loader-line { overflow: hidden; white-space: nowrap; border-right: 2px solid #CD1C18; width: 0; margin-bottom: 8px; }
+	
+	.load-1 { animation: typing-short 0.7s steps(15, end) forwards; }
+	.load-2 { animation: typing-short 0.7s steps(15, end) 0.7s forwards; }
+	.load-3 { animation: typing-short 0.5s steps(10, end) 1.4s forwards, blink 0.5s step-end infinite; }
+	
+	@keyframes typing-short { from { width: 0 } to { width: 100% } }
+	@keyframes blink { from, to { border-color: transparent } 50% { border-color: #CD1C18 } }
+</style>
+
+<script is:inline>
+	window.addEventListener('load', () => {
+		setTimeout(() => { document.body.classList.add('loaded'); }, 2200);
+	});
+</script>

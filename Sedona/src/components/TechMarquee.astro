@@ -1,0 +1,32 @@
+---
+const techStack = ["Python", "PyTorch", "TensorFlow", "Pandas", "NumPy", "Scikit-Learn", "FastAPI", "PostgreSQL", "Docker", "AWS", "OpenAI API", "LangChain", "Astro", "React", "TypeScript"];
+---
+<section class="w-full px-12 md:px-24 max-w-[1500px] mx-auto py-12">
+    <div class="mb-12">
+        <h2 class="text-[10px] font-black uppercase tracking-[1em] text-[#CD1C18]/40 mb-4">Technical Skills</h2>
+        <div class="w-full h-[1px] bg-[#CD1C18]/10"></div>
+    </div>
+    <div class="py-12 overflow-hidden bg-white/10 flex flex-col gap-10 mask-fade">
+        <div class="flex whitespace-nowrap animate-scroll-left">
+            {[...techStack, ...techStack].map((tech) => (
+                <span class="marquee-item font-bungee text-[1.4rem] md:text-[2.2rem] text-[#38000A]/30 px-14 tracking-widest hover:text-[#CD1C18]">{tech}</span>
+            ))}
+        </div>
+        <div class="flex whitespace-nowrap animate-scroll-right">
+            {[...techStack.reverse(), ...techStack].map((tech) => (
+                <span class="marquee-item font-bungee text-[1.4rem] md:text-[2.2rem] text-[#CD1C18]/40 px-14 tracking-widest hover:text-[#38000A]">{tech}</span>
+            ))}
+        </div>
+    </div>
+</section>
+
+<style>
+    .font-bungee { font-family: 'Bungee Shade', cursive; text-transform: uppercase; }
+    .animate-scroll-left { animation: scrollLeft 45s linear infinite }
+    .animate-scroll-right { animation: scrollRight 45s linear infinite }
+    @keyframes scrollLeft { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+    @keyframes scrollRight { from { transform: translateX(-50%) } to { transform: translateX(0) } }
+    .mask-fade { mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent); }
+    .marquee-item { display: inline-block; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: default; }
+    .marquee-item:hover { transform: scale(1.15) translateY(-5px); filter: drop-shadow(0 10px 10px rgba(205, 28, 24, 0.2)); }
+</style>

@@ -1,0 +1,23 @@
+---
+---
+<div class="hidden lg:block lg:col-span-5 zen-float">
+    <div class="p-10 rounded-[2.5rem] bg-white/40 backdrop-blur-2xl border border-white/60 shadow-sm relative overflow-hidden group">
+        <div class="flex gap-2 mb-10">
+            <div class="w-3 h-3 rounded-full bg-[#CD1C18] animate-pulse"></div>
+            <div class="w-3 h-3 rounded-full bg-[#FFA896]"></div>
+        </div>
+        <div class="space-y-4 font-mono text-[11px] leading-relaxed text-[#38000A]/60">
+            <p class="terminal-line text-[#CD1C18] font-bold uppercase tracking-widest text-[9px]">Environment: Sedona_v2.026</p>
+            <p class="terminal-line" style="animation-delay: 3.4s;">> User: <span class="text-[#38000A] font-bold">Nitish_Thotakura</span></p>
+            <p class="terminal-line" style="animation-delay: 3.6s;">> Role: <span class="italic text-[#9B1313]">Creative Developer</span></p>
+            <p class="terminal-line flex items-center gap-2" style="animation-delay: 3.8s;">> Status: <span class="text-[#CD1C18] animate-pulse">Active_</span></p>
+        </div>
+    </div>
+</div>
+
+<style>
+    .zen-float { animation: float 6s ease-in-out infinite; }
+    .terminal-line { opacity: 0; animation: lineFadeIn 0.5s ease 3.2s forwards; }
+    @keyframes lineFadeIn { from { opacity: 0; transform: translateX(-10px) } to { opacity: 1; transform: translateX(0) } }
+    @keyframes float { 0%, 100% { transform: translateY(0px) } 50% { transform: translateY(-10px) } }
+</style>
