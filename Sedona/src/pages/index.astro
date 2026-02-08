@@ -1,73 +1,122 @@
 ---
 import '../styles/global.css';
 import Layout from '../layouts/Layout.astro';
+import IdentityCard from '../components/IdentityCard.astro';
 ---
 
 <Layout title="Sedona | Nitish Thotakura">
-	<div id="glass-lens" class="fixed top-0 left-0 w-[180px] h-[180px] rounded-full pointer-events-none z-40 bg-gradient-to-br from-[#BC4A3C]/20 to-white/5 backdrop-blur-[10px] opacity-0 transition-opacity duration-300"></div>
-
-	<main class="relative h-screen w-full flex items-center justify-end px-8 md:px-24 overflow-hidden bg-transparent">
+	<style is:global>
+		@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Space+Mono:wght@400;700&family=Syne:wght@600;800&display=swap');
 		
-		<div class="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
-			<div id="rock-main" class="absolute -top-32 -left-32 w-[500px] md:w-[850px] aspect-[4/3] transition-transform duration-700 ease-out origin-top-left">
-				<div class="w-full h-full bg-gradient-to-br from-[#3D2B1F] via-[#BC4A3C]/30 to-transparent 
-					rounded-[10%_90%_60%_40%/40%_30%_70%_60%] rotate-[15deg] 
-					border-r-[15px] border-b-[15px] border-black/10 
-					filter blur-[1px] shadow-[60px_60px_120px_rgba(0,0,0,0.5)]">
+		html { scroll-behavior: smooth; }
+
+		body { 
+			background-color: #FAF9F6; 
+			margin: 0; 
+			color: #38000A;
+			background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+			overflow-x: hidden;
+		}
+
+		.font-bungee {
+			font-family: 'Bungee Shade', cursive;
+			text-transform: uppercase;
+			line-height: 1.1;
+			font-size: clamp(2.2rem, 5.5vw, 3.8rem); 
+		}
+
+		.[writing-mode\:vertical-lr] { writing-mode: vertical-lr; }
+	</style>
+
+	<div class="fixed inset-0 z-0 pointer-events-none">
+		<div class="absolute inset-0 bg-[#FFA896]/20 blur-[120px] rounded-full scale-150 -translate-x-1/4 -translate-y-1/4"></div>
+	</div>
+
+	<aside class="fixed left-0 top-0 h-full w-20 z-50 flex flex-col items-center justify-between py-12 border-r border-[#38000A]/5 bg-white/10 backdrop-blur-md">
+		<div class="rotate-180 [writing-mode:vertical-lr] text-[10px] tracking-[0.6em] font-black uppercase text-[#38000A]/20 select-none">
+			React • Astro • TypeScript
+		</div>
+		<div class="flex flex-col items-center gap-8 text-[#38000A]">
+			<a href="https://github.com/Nitish-888" target="_blank" class="hover:text-[#CD1C18] transition-colors uppercase text-[10px] font-bold tracking-[0.3em] [writing-mode:vertical-lr] rotate-180">GitHub</a>
+			<a href="#identity" class="hover:text-[#CD1C18] transition-colors uppercase text-[10px] font-bold tracking-[0.3em] [writing-mode:vertical-lr] rotate-180">Identity</a>
+			<div class="w-[1px] h-12 bg-[#CD1C18]/30 mt-4"></div>
+		</div>
+	</aside>
+
+	<main class="relative z-10 pl-20">
+		<section class="h-screen w-full flex items-center px-12 md:px-24 max-w-[1500px] mx-auto">
+			<div class="grid grid-cols-1 lg:grid-cols-12 gap-16 w-full items-center">
+				<div class="hidden lg:block lg:col-span-5">
+					<div class="p-10 rounded-[2.5rem] bg-white/40 backdrop-blur-2xl border border-white/60 shadow-sm">
+						<div class="flex gap-2 mb-10">
+							<div class="w-3 h-3 rounded-full bg-[#CD1C18]"></div>
+							<div class="w-3 h-3 rounded-full bg-[#FFA896]"></div>
+						</div>
+						<div class="space-y-4 font-mono text-[11px] leading-relaxed text-[#38000A]/60">
+							<p class="text-[#CD1C18] font-bold uppercase tracking-widest text-[9px]">Environment: Sedona_v2.026</p>
+							<p>> User: <span class="text-[#38000A] font-bold">Nitish_Thotakura</span></p>
+							<p>> Role: <span class="italic text-[#9B1313]">Creative Developer</span></p>
+							<p class="animate-pulse opacity-50">> Status: Active_</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="lg:col-span-7 flex flex-col items-end text-right">
+					<h1 class="font-bungee text-[#38000A] mb-8">
+						Nitish <br/> <span class="text-[#CD1C18]">Thotakura</span>
+					</h1>
+					<div class="max-w-md space-y-6">
+						<p class="text-[#38000A]/80 font-medium text-lg leading-relaxed">
+							A Software Developer fueled by the intersection of code and art. 
+							Passionate about building high-performance web experiences with 
+							modern architecture and elegant design.
+						</p>
+						<div class="mt-12 flex flex-col items-end gap-2">
+							<a href="#identity" class="text-[9px] font-black uppercase tracking-[0.4em] text-[#CD1C18] animate-bounce">Scroll to Explore</a>
+							<div class="w-[1px] h-16 bg-[#CD1C18]/30 mt-2"></div>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
+		</section>
 
-		<div class="relative z-10 text-right max-w-2xl pr-4">
-			<div class="group cursor-default inline-block">
-				<h1 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter uppercase italic text-[var(--text)] leading-[0.8] transition-all duration-500 ease-out group-hover:scale-[1.03] group-hover:-translate-x-4">
-					Nitish <br/> <span class="text-[#BC4A3C]">Thotakura</span>
-				</h1>
+		<section id="identity" class="min-h-screen w-full flex flex-col justify-center px-12 md:px-24 py-24 max-w-[1500px] mx-auto">
+			<div class="mb-16">
+				<h2 class="text-[10px] font-black uppercase tracking-[1em] text-[#CD1C18]/40 mb-4">Identity Grid</h2>
+				<div class="w-full h-[1px] bg-[#CD1C18]/10"></div>
 			</div>
-			
-			<p class="mt-8 text-gray-400 tracking-[0.4em] uppercase text-[10px] md:text-xs font-medium opacity-80">
-				Creative Developer <span class="text-black/10 mx-2">//</span> Sedona 2026
-			</p>
 
-			<button class="mt-12 px-10 py-4 bg-white/10 backdrop-blur-xl border border-black/5 rounded-full text-black text-[10px] tracking-[0.2em] font-bold uppercase hover:bg-[#BC4A3C] hover:text-white transition-all duration-500 shadow-sm">
-				Explore Work
-			</button>
-		</div>
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch auto-rows-fr">
+				<IdentityCard 
+					type="github" 
+					username="Nitish-888" 
+					url="https://github.com/Nitish-888" 
+				/>
+				
+				<IdentityCard 
+					type="leetcode" 
+					username="Nitish_Thotakura" 
+					url="https://leetcode.com/u/Nitish_Thotakura/" 
+				/>
 
+				<div class="relative group p-4">
+					<div class="absolute inset-4 translate-y-3 translate-x-2 bg-[#38000A]/10 rounded-[2.5rem] -z-10 group-hover:translate-y-5 group-hover:translate-x-4 transition-all duration-500"></div>
+					<div class="relative h-full bg-gradient-to-br from-[#CD1C18] to-[#9B1313] rounded-[2.5rem] shadow-xl overflow-hidden z-10 transition-all duration-500 group-hover:-translate-y-1">
+						<div class="p-10 h-full flex flex-col justify-between cursor-pointer relative text-white">
+							<div class="absolute top-0 right-0 p-8 opacity-20 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500">
+								<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+							</div>
+							<h3 class="text-[9px] tracking-[0.4em] uppercase font-bold opacity-70">Curriculum Vitae</h3>
+							<div>
+								<p class="text-2xl font-black italic uppercase leading-none group-hover:tracking-wider transition-all duration-500">
+									Download <br/> Resume
+								</p>
+								<div class="w-8 h-1 bg-white/40 mt-4 group-hover:w-20 transition-all duration-500 shadow-[0_0_15px_rgba(255,255,255,0.5)]"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
 	</main>
 </Layout>
-
-<script>
-	const lens = document.getElementById('glass-lens');
-	const rockMain = document.getElementById('rock-main');
-
-	document.addEventListener('mousemove', (e) => {
-		const { clientX, clientY } = e;
-
-		if (lens) {
-			lens.style.opacity = "1";
-			lens.style.transform = `translate3d(${clientX - 90}px, ${clientY - 90}px, 0)`;
-		}
-
-		if (rockMain) {
-			const moveX = (window.innerWidth / 2 - clientX) / 80;
-			const moveY = (window.innerHeight / 2 - clientY) / 80;
-			rockMain.style.transform = `translate3d(${moveX}px, ${moveY}px, 0) rotate(15deg)`;
-		}
-	});
-
-	document.addEventListener('mouseleave', () => {
-		if (lens) {
-			lens.style.opacity = "0";
-		}
-	});
-</script>
-
-<style>
-	#glass-lens {
-		mask-image: radial-gradient(circle, black 0%, transparent 80%);
-		-webkit-mask-image: radial-gradient(circle, black 0%, transparent 80%);
-		will-change: transform;
-	}
-	h1 { white-space: nowrap; }
-</style>
