@@ -1,5 +1,35 @@
 ---
 const { type, username, url } = Astro.props;
+
+let displayData = {
+    primaryStat: "0",
+    label: "Loading",
+    subStat: ""
+};
+
+try {
+    if (type === 'github') {
+        const response = await fetch(`https://api.github.com/users/${username}`);
+        const data = await response.json();
+        displayData = {
+            primaryStat: data.public_repos || "0",
+            label: "Repos",
+            subStat: `Followers: ${data.followers || 0}`
+        };
+    } else if (type === 'leetcode') {
+        // Using a reliable community GraphQL proxy for LeetCode
+        const response = await fetch(`https://leetcode-stats-api.herokuapp.com/${username}`);
+        const data = await response.json();
+        displayData = {
+            primaryStat: data.totalSolved || "0",
+            label: "Solved",
+            subStat: `Ranking: #${data.ranking?.toLocaleString() || 'N/A'}`,
+            percentage: (data.totalSolved / data.totalQuestions * 100).toFixed(0) + '%'
+        };
+    }
+} catch (e) {
+    console.error(`Error fetching ${type} data:`, e);
+}
 ---
 
 <div class="relative w-full h-full group p-4">
@@ -18,32 +48,36 @@ const { type, username, url } = Astro.props;
             <div class="relative">
                 <div class="absolute inset-0 bg-[#CD1C18]/20 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
-                {type === 'github' ? (
-                    <div class="relative space-y-1">
-                        <div class="flex items-baseline gap-2">
-                            <span class="text-5xl font-black italic text-[#38000A] group-hover:text-[#CD1C18] transition-colors duration-500">5</span>
-                            <span class="text-[10px] font-bold uppercase text-gray-400">Repos</span>
-                        </div>
-                        <div class="w-full h-[1px] bg-[#38000A]/5 my-4"></div>
-                        <p class="text-[10px] font-bold text-gray-400 uppercase tracking-tighter">Followers: 0</p>
+                <div class="relative space-y-1">
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-5xl font-black italic text-[#38000A] group-hover:text-[#CD1C18] transition-colors duration-500">
+                            {displayData.primaryStat}
+                        </span>
+                        <span class="text-[10px] font-bold uppercase text-gray-400">
+                            {displayData.label}
+                        </span>
                     </div>
-                ) : (
-                    <div class="relative space-y-1">
-                        <div class="flex items-baseline gap-2">
-                            <span class="text-5xl font-black italic text-[#38000A] group-hover:text-[#CD1C18] transition-colors duration-500">400</span>
-                            <span class="text-[10px] font-bold uppercase text-gray-400">Solved</span>
-                        </div>
-                        <div class="mt-4 space-y-2">
+                    <div class="w-full h-[1px] bg-[#38000A]/5 my-4"></div>
+                    
+                    {type === 'leetcode' ? (
+                        <div class="space-y-2">
                             <div class="flex justify-between items-end text-[9px] font-bold uppercase">
-                                <span class="text-gray-400">Ranking</span>
-                                <span class="text-[#38000A]">#273,833</span>
+                                <span class="text-gray-400">Global Rank</span>
+                                <span class="text-[#38000A]">{displayData.subStat.split(': ')[1]}</span>
                             </div>
                             <div class="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                                <div class="h-full bg-[#CD1C18] rounded-full w-[45%] group-hover:w-[60%] transition-all duration-1000"></div>
+                                <div 
+                                    class="h-full bg-[#CD1C18] rounded-full transition-all duration-1000" 
+                                    style={`width: ${displayData.percentage || '0%'}`}
+                                ></div>
                             </div>
                         </div>
-                    </div>
-                )}
+                    ) : (
+                        <p class="text-[10px] font-bold text-gray-400 uppercase tracking-tighter">
+                            {displayData.subStat}
+                        </p>
+                    )}
+                </div>
             </div>
         </div>
 
