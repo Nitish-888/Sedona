@@ -38,6 +38,40 @@ const techStack = [
 			letter-spacing: -0.02em;
 		}
 
+		/* REFINED TYPING ANIMATION - SLOWER SPEED */
+		.typewriter {
+			overflow: hidden;
+			border-right: .15em solid #CD1C18;
+			white-space: nowrap;
+			margin: 0 0 0 auto;
+			letter-spacing: .05em;
+			width: 0;
+		}
+
+		.type-first {
+			/* 3s duration for a natural feel */
+			animation: 
+				typing 3s steps(25, end) forwards,
+				blink-caret .75s step-end 4 forwards; 
+		}
+
+		.type-second {
+			/* Starts after the 3s first name animation finishes */
+			animation: 
+				typing 3s steps(25, end) 3s forwards,
+				blink-caret .75s step-end 4 3s forwards;
+		}
+
+		@keyframes typing {
+			from { width: 0 }
+			to { width: 100% }
+		}
+
+		@keyframes blink-caret {
+			from, to { border-color: transparent }
+			50% { border-color: #CD1C18; }
+		}
+
 		/* MARQUEE ANIMATIONS */
 		@keyframes scrollLeft {
 			from { transform: translateX(0); }
@@ -52,7 +86,6 @@ const techStack = [
 		.animate-scroll-left { animation: scrollLeft 45s linear infinite; }
 		.animate-scroll-right { animation: scrollRight 45s linear infinite; }
 
-		/* THE EDGE BLUR MASK */
 		.mask-fade {
 			mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
 			-webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
@@ -75,7 +108,7 @@ const techStack = [
 	</aside>
 
 	<main class="relative z-10 pl-20">
-		<section class="min-h-screen w-full flex items-center px-12 md:px-24 max-w-[1400px] mx-auto">
+		<section class="h-screen w-full flex items-center px-12 md:px-24 max-w-[1400px] mx-auto">
 			<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 w-full items-center">
 				
 				<div class="hidden lg:block lg:col-span-5">
@@ -94,9 +127,9 @@ const techStack = [
 				</div>
 
 				<div class="lg:col-span-7 flex flex-col items-end text-right">
-					<h1 class="font-bungee text-[#38000A] mb-8 text-[clamp(2.5rem,7vw,5rem)] leading-[1.1]">
-						Nitish <br/> 
-						<span class="text-[#CD1C18]">Thotakura</span>
+					<h1 class="font-bungee text-[#38000A] mb-8 text-[clamp(2.5rem,7vw,5rem)] leading-[1.1] flex flex-col items-end">
+						<span class="typewriter type-first">Nitish</span>
+						<span class="typewriter type-second text-[#CD1C18]">Thotakura</span>
 					</h1>
 					<div class="max-w-md space-y-6">
 						<p class="intro-text text-[#38000A]/90 font-light text-xl md:text-2xl leading-[1.4]">
@@ -121,7 +154,7 @@ const techStack = [
 
 			<div class="py-12 overflow-hidden bg-white/10 flex flex-col gap-10 mask-fade">
 				<div class="flex whitespace-nowrap animate-scroll-left">
-					{[...techStack, ...techStack, ...techStack].map((tech) => (
+					{[...techStack, ...techStack].map((tech) => (
 						<span class="font-bungee text-[1.4rem] md:text-[2.2rem] text-[#38000A]/30 px-14 select-none tracking-widest drop-shadow-[0_2px_2px_rgba(255,255,255,0.8)] transition-all hover:text-[#CD1C18] hover:scale-110 cursor-default">
 							{tech}
 						</span>
@@ -144,17 +177,8 @@ const techStack = [
 			</div>
 
 			<div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch auto-rows-fr">
-				<IdentityCard 
-					type="github" 
-					username="Nitish-888" 
-					url="https://github.com/Nitish-888" 
-				/>
-				
-				<IdentityCard 
-					type="leetcode" 
-					username="Nitish_Thotakura" 
-					url="https://leetcode.com/u/Nitish_Thotakura/" 
-				/>
+				<IdentityCard type="github" username="Nitish-888" url="https://github.com/Nitish-888" />
+				<IdentityCard type="leetcode" username="Nitish_Thotakura" url="https://leetcode.com/u/Nitish_Thotakura/" />
 
 				<div class="relative group p-4">
 					<div class="absolute inset-4 translate-y-3 translate-x-2 bg-[#38000A]/10 rounded-[2.5rem] -z-10 group-hover:translate-y-5 group-hover:translate-x-4 transition-all duration-500"></div>
