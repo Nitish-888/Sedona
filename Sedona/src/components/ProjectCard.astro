@@ -1,0 +1,40 @@
+---
+const { title, tags, link, image } = Astro.props;
+---
+<div class="relative group p-4 h-full">
+    <div class="absolute inset-4 translate-y-3 translate-x-2 bg-[#38000A]/10 rounded-[2.5rem] -z-10 group-hover:translate-y-5 group-hover:translate-x-4 transition-all duration-500"></div>
+    
+    <div class="relative h-full bg-white/40 backdrop-blur-2xl border border-white/60 rounded-[2.5rem] overflow-hidden flex flex-col z-10 transition-all duration-500 group-hover:-translate-y-2">
+        
+        <div class="relative h-48 w-full overflow-hidden bg-[#38000A]/5">
+            <div class="absolute inset-0 bg-[#CD1C18]/10 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
+            <img src={image} alt={title} class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700" />
+            <div class="absolute top-4 right-4 z-20">
+                <div class="w-2 h-2 rounded-full bg-[#CD1C18] shadow-[0_0_10px_#CD1C18]"></div>
+            </div>
+        </div>
+
+        <div class="p-8 flex flex-col flex-1">
+            <h3 class="font-bungee text-xl text-[#38000A] group-hover:text-[#CD1C18] transition-colors mb-4">{title}</h3>
+            
+            <div class="flex flex-wrap gap-2 mb-8">
+                {tags.map((tag) => (
+                    <span class="text-[8px] font-bold uppercase tracking-widest px-2 py-1 border border-[#38000A]/10 rounded text-[#38000A]/60">
+                        {tag}
+                    </span>
+                ))}
+            </div>
+
+            <div class="mt-auto pt-4 border-t border-[#38000A]/5">
+                <a href={link} target="_blank" class="text-[10px] font-black uppercase tracking-widest text-[#CD1C18] flex items-center gap-2 group/link">
+                    Explore Project
+                    <span class="group-hover/link:translate-x-1 transition-transform">→</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .font-bungee { font-family: 'Bungee Shade', cursive !important; }
+</style>
