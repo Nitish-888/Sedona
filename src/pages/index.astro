@@ -8,6 +8,7 @@ import Hero from '../components/Hero.astro';
 import ZenCard from '../components/ZenCard.astro';
 import TechMarquee from '../components/TechMarquee.astro';
 import IdentityCard from '../components/IdentityCard.astro';
+import ContactTerminal from '../components/ContactTerminal.astro';
 ---
 
 <Layout title="Sedona | Nitish Thotakura">
@@ -33,20 +34,20 @@ import IdentityCard from '../components/IdentityCard.astro';
 		<TechMarquee />
 
 		<section id="projects" class="min-h-screen w-full flex flex-col justify-center px-12 md:px-24 py-24 max-w-[1500px] mx-auto">
-    <div class="mb-16">
-        <h2 class="text-[10px] font-black uppercase tracking-[1em] text-[#CD1C18]/40 mb-4">Project Vault</h2>
-        <div class="w-full h-[1px] bg-[#CD1C18]/10"></div>
-    </div>
+			<div class="mb-16">
+				<h2 class="text-[10px] font-black uppercase tracking-[1em] text-[#CD1C18]/40 mb-4">Project Vault</h2>
+				<div class="w-full h-[1px] bg-[#CD1C18]/10"></div>
+			</div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <ProjectCard 
-            title="Sedona 2026" 
-            tags={["Astro", "React", "AI"]} 
-            link="#" 
-            image="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800"
-        />
-        </div>
-	</section>
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+				<ProjectCard 
+					title="Sedona 2026" 
+					tags={["Astro", "React", "AI"]} 
+					link="#" 
+					image="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800"
+				/>
+			</div>
+		</section>
 
 		<section id="identity" class="min-h-screen w-full flex flex-col justify-center px-12 md:px-24 py-24 max-w-[1500px] mx-auto">
 			<div class="mb-16">
@@ -70,6 +71,15 @@ import IdentityCard from '../components/IdentityCard.astro';
 					</a>
 				</div>
 			</div>
+		</section>
+
+		<section id="contact" class="min-h-screen w-full flex flex-col justify-center px-12 md:px-24 py-24 max-w-[1500px] mx-auto">
+			<div class="mb-16">
+				<h2 class="text-[10px] font-black uppercase tracking-[1em] text-[#CD1C18]/40 mb-4">Communication Line</h2>
+				<div class="w-full h-[1px] bg-[#CD1C18]/10"></div>
+			</div>
+			
+			<ContactTerminal />
 		</section>
 		
 	</main>
